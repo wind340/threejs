@@ -33,7 +33,7 @@ class App {
     const width = this._divContainer.clientWidth;
     const height = this._divContainer.clientHeight;
     const camera = new THREE.PerspectiveCamera(100, width / height, 0.1, 100);
-    camera.position.z = 20;
+    camera.position.z = 10;
     this._camera = camera;
   }
 
@@ -46,20 +46,12 @@ class App {
   }
 
   _setupModel() {
-    class CustomSinCurve extends THREE.Curve {
-      constructor(scale) {
-        super();
-        this.scale = scale;
-      }
-      getPoint(t) {
-        const tx = t * 3 - 1.5;
-        const ty = Math.sin(2 * Math.PI * t);
-        const tz = 0;
-        return new THREE.Vector3(tx, ty, tz).multiplyScalar(this.scale);
-      }
+    const points = [];
+    for (let i = 0; i < 10; i++) {
+      points.push(new THREE.Vector2(Math.sin(i * 0.2 * 3)  + 2, (i - 5) * 0.8));
     }
-    const path = new CustomSinCurve(4);
-    const geometry = new THREE.TubeGeometry(path, 40, 0.8, 8);
+    const geometry = new THREE.LatheGeometry(points);
+
     const fillmaterial = new THREE.MeshPhongMaterial({ color: 0x515151 });
     const cube = new THREE.Mesh(geometry, fillmaterial);
 
@@ -76,6 +68,7 @@ class App {
     this._scene.add(group);
     this._cube = group;
   }
+
   resize() {
     const width = this._divContainer.clientWidth;
     const height = this._divContainer.clientHeight;
