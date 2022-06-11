@@ -1,5 +1,7 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import { FontLoader } from "../node_modules/three/examples/jsm/loaders/FontLoader.js";
+import { TextGeometry } from "../node_modules/three/examples/jsm/geometries/TextGeometry.js";
 
 class App {
   constructor() {
@@ -32,8 +34,8 @@ class App {
   _setupCamera() {
     const width = this._divContainer.clientWidth;
     const height = this._divContainer.clientHeight;
-    const camera = new THREE.PerspectiveCamera(100, width / height, 0.1, 100);
-    camera.position.z = 10;
+    const camera = new THREE.PerspectiveCamera(100, width / height, 0.1, 1000);
+    camera.position.z = 25;
     this._camera = camera;
   }
 
@@ -46,27 +48,43 @@ class App {
   }
 
   _setupModel() {
-    const points = [];
-    for (let i = 0; i < 10; i++) {
-      points.push(new THREE.Vector2(Math.sin(i * 0.2 * 3)  + 2, (i - 5) * 0.8));
+    const fontLoader = new FontLoader();
+    async function loadFont(that) {
+      const url =
+        "/node_modules/three/examples/fonts/helvetiker_regular.typeface.json";
+      const font = await new Promise((resolve, reject) => {
+        fontLoader.load(url, resolve, undefined, reject);
+      });
+
+      const geometry = new TextGeometry("League of Legend", {
+        font: font,
+        size: 10,
+        height: 5,
+        curveSegments: 10,
+        bevelEnabled: true,
+        bevelThickness: 2,
+        bevelSize: 1,
+        bevelOffset: 0,
+        bevelSegments: 5,
+      });
+
+      const fillmaterial = new THREE.MeshPhongMaterial({ color: 0x515151 });
+      const cube = new THREE.Mesh(geometry, fillmaterial);
+
+      const lineMaterial = new THREE.LineBasicMaterial({ color: 0xffff00 });
+      const line = new THREE.LineSegments(
+        new THREE.WireframeGeometry(geometry),
+        lineMaterial
+      );
+
+      const group = new THREE.Group();
+      group.add(cube);
+      group.add(line);
+
+      that._scene.add(group);
+      that._cube = group;
     }
-    const geometry = new THREE.LatheGeometry(points);
-
-    const fillmaterial = new THREE.MeshPhongMaterial({ color: 0x515151 });
-    const cube = new THREE.Mesh(geometry, fillmaterial);
-
-    const lineMaterial = new THREE.LineBasicMaterial({ color: 0xffff00 });
-    const line = new THREE.LineSegments(
-      new THREE.WireframeGeometry(geometry),
-      lineMaterial
-    );
-
-    const group = new THREE.Group();
-    group.add(cube);
-    group.add(line);
-
-    this._scene.add(group);
-    this._cube = group;
+    loadFont(this);
   }
 
   resize() {
