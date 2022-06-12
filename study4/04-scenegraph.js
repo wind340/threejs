@@ -38,7 +38,7 @@ class App {
       0.1,
       100
     );
-    camera.position.z = 30;
+    camera.position.z = 25;
     this._camera = camera;
   }
 
@@ -103,6 +103,10 @@ class App {
     const moonMesh = new THREE.Mesh(sphereGeometry, moonMaterial);
     moonMesh.scale.set(0.5, 0.5, 0.5);
     moonOrbit.add(moonMesh);
+
+    this._solarSystem = solarSystem;
+    this._earthOrbit = earthOrbit;
+    this._moonOrbit = moonOrbit;
   }
 
   resize() {
@@ -122,10 +126,11 @@ class App {
   }
 
   update(time) {
-    time *= 0.0005; //second unit
+    time *= 0.001; //second unit
 
-    this._cube.rotation.x = time;
-    this._cube.rotation.y = time;
+    this._solarSystem.rotation.y = time / 2;
+    this._earthOrbit.rotation.y = time * 2;
+    this._moonOrbit.rotation.y = time * 5;
   }
 }
 
