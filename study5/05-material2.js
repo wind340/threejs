@@ -30,12 +30,14 @@ class App {
   }
 
   _setupModel() {
-    const material = new THREE.MeshPhongMaterial({
+    const material = new THREE.MeshPhysicalMaterial({
       color: 0xff0000,
       emissive: 0x555500,
-      specular: 0xffff00,
-      shininess: 5,
-      flatShading: true,
+      roughness: 1,
+      metalness: 0,
+      clearcoat: 0.5,
+      clearcoatRoughness: 0.2,
+      flatShading: false,
       wireframe: false,
     });
 
