@@ -13,7 +13,7 @@ study1
 study2   
 ![OrbitControl](https://user-images.githubusercontent.com/83698052/172826406-0132b8cf-5870-4b2e-bc95-69aeee834ffb.gif)
     
-study3
+study3   
 ![CylinderGeometry](https://user-images.githubusercontent.com/83698052/173090909-0ab7083a-e992-4850-bfc0-3a9334594ced.gif)
 ![RingGeometry](https://user-images.githubusercontent.com/83698052/173090927-a40665a8-d664-49c5-80e0-5c1d4ce6acb7.gif)
 ![PlaneGeometry](https://user-images.githubusercontent.com/83698052/173090935-996a857a-edc4-465c-891f-63148ffcfbf3.gif)
@@ -23,10 +23,10 @@ study3
 ![ExtrudeGeometry](https://user-images.githubusercontent.com/83698052/173403075-868315ea-333a-49bb-937c-0f7611dba2cf.gif)
 ![TextGeometry](https://user-images.githubusercontent.com/83698052/173402046-e4e93719-f8ef-4346-87c3-be151ed31666.gif)
 
-study4
+study4   
 ![solarObject3d](https://user-images.githubusercontent.com/83698052/173403990-60e54a77-e304-4071-914d-7b02a4a09755.gif)
 
-study5
+study5   
 ![pointMaterial](https://user-images.githubusercontent.com/83698052/173404057-2c66314a-a8fd-449f-871e-dd63e2d967ba.gif)
 ![texture](https://user-images.githubusercontent.com/83698052/173404081-cbbfab98-a4e0-4694-aa77-b43239715906.gif)
 ![MeshLambertMaterial](https://user-images.githubusercontent.com/83698052/173404113-e13ca549-6fbe-4fb0-98f3-0613fd8374b4.gif)
