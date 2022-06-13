@@ -30,8 +30,10 @@ class App {
   }
 
   _setupModel() {
-    const vertices = [-1, 1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0];
-
+    const vertices = [
+      -1, 1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, -3, 0, 1, -3, 0, -1, -1, 0,
+      -1, 1, 0, 1, -1, 0, 1, -3, 0,
+    ];
     const geometry = new THREE.BufferGeometry();
     geometry.setAttribute(
       "position",
@@ -40,12 +42,12 @@ class App {
 
     const material = new THREE.LineDashedMaterial({
       color: 0xffffff,
-      dashSize: 0.2,
-      gapSize: 0.1,
+      dashSize: 5,
+      gapSize: 1,
       scale: 4,
     });
 
-    const line = new THREE.LineLoop(geometry, material);
+    const line = new THREE.LineSegments(geometry, material);
     line.computeLineDistances();
     this._scene.add(line);
   }
