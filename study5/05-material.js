@@ -30,14 +30,7 @@ class App {
   }
 
   _setupModel() {
-    const vertices = [];
-    for (let i = 0; i < 10000; i++) {
-      const x = THREE.MathUtils.randFloatSpread(5);
-      const y = THREE.MathUtils.randFloatSpread(5);
-      const z = THREE.MathUtils.randFloatSpread(5);
-
-      vertices.push(x, y, z);
-    }
+    const vertices = [-1, 1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0];
 
     const geometry = new THREE.BufferGeometry();
     geometry.setAttribute(
@@ -45,14 +38,16 @@ class App {
       new THREE.Float32BufferAttribute(vertices, 3)
     );
 
-    const material = new THREE.PointsMaterial({
-      color: 0xff0000,
-      size: 0.1,
-      sizeAttenuation: false,
+    const material = new THREE.LineDashedMaterial({
+      color: 0xffffff,
+      dashSize: 0.2,
+      gapSize: 0.1,
+      scale: 4,
     });
 
-    const points = new THREE.Points(geometry, material);
-    this._scene.add(points);
+    const line = new THREE.LineLoop(geometry, material);
+    line.computeLineDistances();
+    this._scene.add(line);
   }
 
   _setupCamera() {
@@ -62,7 +57,7 @@ class App {
       0.1,
       100
     );
-    camera.position.z = 15;
+    camera.position.z = 7;
     this._camera = camera;
   }
 
