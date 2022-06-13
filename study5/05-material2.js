@@ -30,15 +30,26 @@ class App {
   }
 
   _setupModel() {
-    const material = new THREE.MeshPhysicalMaterial({
-      color: 0xff0000,
-      emissive: 0x555500,
-      roughness: 1,
-      metalness: 0,
-      clearcoat: 0.5,
-      clearcoatRoughness: 0.2,
-      flatShading: false,
-      wireframe: false,
+    const textureLoader = new THREE.TextureLoader();
+    const map = textureLoader.load("../img/uv_grid_opengl.jpg", texture => {
+      texture.repeat.x = 1;
+      texture.repeat.y = 1;
+
+      texture.wrapS = THREE.ClampToEdgeWrapping;
+      texture.wrapT = THREE.ClampToEdgeWrapping;
+
+      texture.offset.x = 0;
+      texture.offset.y = 0;
+
+      texture.rotation = THREE.MathUtils.degToRad(0);
+      texture.center.x = 0.5;
+      texture.center.y = 0.5;
+
+      texture.magFilter = THREE.NearestFilter;
+      texture.minFilter = THREE.NearestMipMapLinearFilter;
+    });
+    const material = new THREE.MeshStandardMaterial({
+      map: map,
     });
 
     const box = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), material);
@@ -60,7 +71,7 @@ class App {
       0.1,
       100
     );
-    camera.position.z = 3;
+    camera.position.z = 7;
     this._camera = camera;
   }
 
