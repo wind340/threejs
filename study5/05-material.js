@@ -29,33 +29,12 @@ class App {
     new OrbitControls(this._camera, this._divContainer);
   }
 
-  _setupCamera() {
-    const width = this._divContainer.clientWidth;
-    const height = this._divContainer.clientHeight;
-    const camera = new THREE.PerspectiveCamera(
-      75,
-      window.innerWidth / window.innerHeight,
-      0.1,
-      100
-    );
-    camera.position.z = 25;
-    this._camera = camera;
-  }
-
-  _setupLight() {
-    const color = 0xffffff;
-    const intensity = 1;
-    const light = new THREE.DirectionalLight(color, intensity);
-    light.position.set(-1, 2, 4);
-    this._scene.add(light);
-  }
-
   _setupModel() {
     const vertices = [];
     for (let i = 0; i < 10000; i++) {
-      const x = THREE.Math.randFloatSpread(5);
-      const y = THREE.Math.randFloatSpread(5);
-      const z = THREE.Math.randFloatSpread(5);
+      const x = THREE.MathUtils.randFloatSpread(5);
+      const y = THREE.MathUtils.randFloatSpread(5);
+      const z = THREE.MathUtils.randFloatSpread(5);
 
       vertices.push(x, y, z);
     }
@@ -68,12 +47,31 @@ class App {
 
     const material = new THREE.PointsMaterial({
       color: 0xff0000,
-      size: 5,
+      size: 0.1,
       sizeAttenuation: false,
     });
 
     const points = new THREE.Points(geometry, material);
     this._scene.add(points);
+  }
+
+  _setupCamera() {
+    const camera = new THREE.PerspectiveCamera(
+      75,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      100
+    );
+    camera.position.z = 15;
+    this._camera = camera;
+  }
+
+  _setupLight() {
+    const color = 0xffffff;
+    const intensity = 1;
+    const light = new THREE.DirectionalLight(color, intensity);
+    light.position.set(-1, 2, 4);
+    this._scene.add(light);
   }
 
   resize() {
