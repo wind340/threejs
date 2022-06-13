@@ -30,14 +30,13 @@ class App {
   }
 
   _setupModel() {
-    const material = new THREE.MeshLambertMaterial({
-      transparent: true,
-      opacity: 0.5,
-      side: THREE.DoubleSide,
-
-      color: "#d25383",
+    const material = new THREE.MeshPhongMaterial({
+      color: 0xff0000,
       emissive: 0x555500,
-      wireframe: true,
+      specular: 0xffff00,
+      shininess: 5,
+      flatShading: true,
+      wireframe: false,
     });
 
     const box = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), material);
