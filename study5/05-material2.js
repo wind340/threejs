@@ -30,18 +30,14 @@ class App {
   }
 
   _setupModel() {
-    const material = new THREE.MeshBasicMaterial({
-      visible: true,
-      transparent: false,
+    const material = new THREE.MeshLambertMaterial({
+      transparent: true,
       opacity: 0.5,
-      depthTest: true,
-      depthWrite: true,
-      side: THREE.BackSide,
-      alphaTest: 0.08,
-      fog: true,
+      side: THREE.DoubleSide,
 
-      color: 0xff0000,
-      wireframe: false,
+      color: "#d25383",
+      emissive: 0x555500,
+      wireframe: true,
     });
 
     const box = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), material);
@@ -63,7 +59,7 @@ class App {
       0.1,
       100
     );
-    camera.position.z = 5;
+    camera.position.z = 3;
     this._camera = camera;
   }
 
