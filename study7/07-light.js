@@ -1,5 +1,7 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import { RectAreaLightUniformsLib } from "../node_modules/three/examples/jsm/lights/RectAreaLightUniformsLib.js";
+import { RectAreaLightHelper } from "../node_modules/three/examples/jsm/helpers/RectAreaLightHelper.js";
 
 class App {
   constructor() {
@@ -123,16 +125,29 @@ class App {
     // const helper = new THREE.PointLightHelper(light);
     // this._scene.add(helper);
 
-    const light = new THREE.SpotLight(0xffffff, 1);
-    light.position.set(0,5,0);
-    light.target.position.set(0,0,0);
-    light.angle = THREE.MathUtils.degToRad(40);
-    light.penumbra = 0;
-    this._scene.add(light.target);
-    const helper = new THREE.SpotLightHelper(light);
-    this._scene.add(helper);
-    this._lightHelper = helper;
-    
+    // const light = new THREE.SpotLight(0xffffff, 1);
+    // light.position.set(0,5,0);
+    // light.target.position.set(0,0,0);
+    // light.angle = THREE.MathUtils.degToRad(40);
+    // light.penumbra = 0;
+    // this._scene.add(light.target);
+    // const helper = new THREE.SpotLightHelper(light);
+    // this._scene.add(helper);
+    // this._lightHelper = helper;
+
+    RectAreaLightUniformsLib.init(); // 광원 초기화
+
+    const light = new THREE.RectAreaLight(0xffffff, 10, 6, 1);
+
+    light.position.set(0, 5, 0);
+    light.rotation.x = THREE.MathUtils.degToRad(-90); // -90도 방향으로 빛을 비춤
+
+    const helper = new RectAreaLightHelper(light);
+    light.add(helper);
+
+    this._scene.add(light);
+    this._light = light;
+
     this._scene.add(light);
     this._light = light;
   }
