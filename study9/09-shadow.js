@@ -137,6 +137,10 @@ class App {
     light.target.position.set(0, 0, 0); // 타겟의 위치
     this._scene.add(light.target);
 
+    //절두체 늘려서 그림자 잘림현상 없애기
+    light.shadow.camera.top = light.shadow.camera.right = 6;
+    light.shadow.camera.bottom = light.shadow.camera.left = -6;
+
     this._scene.add(light);
     this._light = light;
     light.castShadow = true;
