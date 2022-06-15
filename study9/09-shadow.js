@@ -132,14 +132,30 @@ class App {
     this._scene.add(auxLight.target);
     this._scene.add(auxLight);
 
-    const light = new THREE.DirectionalLight(0xffffff, 0.5); //색상, 세기
-    light.position.set(0, 5, 0); // 빛의 위치
-    light.target.position.set(0, 0, 0); // 타겟의 위치
+    // const light = new THREE.DirectionalLight(0xffffff, 0.5); //색상, 세기
+    // light.position.set(0, 5, 0); // 빛의 위치
+    // light.target.position.set(0, 0, 0); // 타겟의 위치
+    // this._scene.add(light.target);
+
+    // const light = new THREE.PointLight(0xffffff, 0.7);
+    // light.position.set(0, 5, 0);
+
+    const light = new THREE.SpotLight(0xffffff, 0.7);
+    light.position.set(0, 5, 0);
+    light.target.position.set(0, 0, 0);
+    light.angle = THREE.MathUtils.degToRad(30);
+    light.penumbra = 0.2;
     this._scene.add(light.target);
+
 
     //절두체 늘려서 그림자 잘림현상 없애기
     light.shadow.camera.top = light.shadow.camera.right = 6;
     light.shadow.camera.bottom = light.shadow.camera.left = -6;
+
+    //shadow 품질을 높이기
+    light.shadow.mapSize.width = light.shadow.mapSize.height = 2048;
+    //radius가 낮을수록 선명
+    light.shadow.radius = 1;
 
     this._scene.add(light);
     this._light = light;
@@ -181,6 +197,12 @@ class App {
         //smallSphere의 좌표계의 위치를 구해서 광원의 타겟 위치에 지정한다
 
         if (this._lightHelper) this._lightHelper.update();
+      }
+
+      //Point Light
+      if(this._light instanceof THREE.PointLight){
+        const smallSphere = smallSpherePivot.children[0];
+        smallSphere.getWorldPosition(this._light.position);
       }
     }
   }
