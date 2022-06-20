@@ -33,3 +33,18 @@ study5
 ![textureLoaderMap](https://user-images.githubusercontent.com/83698052/173404126-adbbb6a3-2443-4743-9d36-26196a4f30c1.gif)
 ![textureMap2](https://user-images.githubusercontent.com/83698052/173404806-0ecb5b53-dd1c-4fce-a545-6a648fc4a9ff.gif)
 
+study6   
+![Custom](https://user-images.githubusercontent.com/83698052/173982692-90893bf6-c8e7-4b3e-9ac7-7fbc2526c8a6.gif)
+
+study7    
+![AmbientLight](https://user-images.githubusercontent.com/83698052/173982753-010cdb4a-f3bf-4995-a6bd-b414771ea716.gif)
+![DirectionalLight](https://user-images.githubusercontent.com/83698052/173982783-c6dd2146-cd77-40f4-80a3-302790d4d664.gif)
+![SpotLight](https://user-images.githubusercontent.com/83698052/173982803-f01577a3-8889-4f9a-b512-d595db5b2331.gif)
+
+study8    
+![OrthographicCamera](https://user-images.githubusercontent.com/83698052/173983126-73e38f4e-08b4-4e7d-b055-3a307142cd76.gif)
+![PerspectiveCamera](https://user-images.githubusercontent.com/83698052/173983131-9cc4a48f-d9ea-405d-b0a6-479d764a1b61.gif)
+
+study9   
+![shadow](https://user-images.githubusercontent.com/83698052/173983236-2d795e72-5457-4265-8f69-8f00a6138b5e.gif)
+
